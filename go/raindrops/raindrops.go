@@ -4,19 +4,17 @@ import "strconv"
 
 const testVersion = 2
 
-func Convert(number int) string {
-	result := drop(number, 3, "Pling") +
-		drop(number, 5, "Plang") +
-		drop(number, 7, "Plong")
+func Convert(i int) string {
+	result := drop(i, 3, "Pling") + drop(i, 5, "Plang") + drop(i, 7, "Plong")
 
 	if result == "" {
-		return strconv.Itoa(number)
+		return strconv.Itoa(i)
 	}
 	return result
 }
 
-func drop(number, factor int, sound string) string {
-	if number%factor == 0 {
+func drop(i, factor int, sound string) string {
+	if i%factor == 0 {
 		return sound
 	}
 	return ""
