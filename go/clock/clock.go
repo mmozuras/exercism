@@ -2,9 +2,7 @@ package clock
 
 import "fmt"
 
-type Clock struct {
-	minutes int
-}
+type Clock int
 
 const (
 	testVersion = 4
@@ -13,14 +11,14 @@ const (
 )
 
 func New(hours int, minutes int) Clock {
-	return Clock{}.Add(hours*hour + minutes)
+	return Clock(0).Add(hours*hour + minutes)
 }
 
 func (clock Clock) String() string {
-	return fmt.Sprintf("%02d:%02d", clock.minutes/hour, clock.minutes%hour)
+	return fmt.Sprintf("%02d:%02d", clock/hour, clock%hour)
 }
 
 func (clock Clock) Add(minutes int) Clock {
-	clock.minutes = (clock.minutes + day + minutes%day) % day
+	clock = Clock((int(clock) + day + minutes%day) % day)
 	return clock
 }
